@@ -5,6 +5,7 @@ import io.vertx.core.DeploymentOptions;
 import io.vertx.core.Future;
 import io.vertx.core.logging.Logger;
 import io.vertx.core.logging.LoggerFactory;
+import io.vertx.starter.database.WikiDatabaseVerticle;
 
 public class MainVerticle extends AbstractVerticle {
 
