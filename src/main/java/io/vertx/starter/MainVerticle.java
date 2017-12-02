@@ -21,7 +21,7 @@ public class MainVerticle extends AbstractVerticle {
 
       Future<String> httpVerticleDeployment = Future.future();
       vertx.deployVerticle(
-        "io.vertx.guides.wiki.HttpServerVerticle",
+        "io.vertx.starter.http.HttpServerVerticle",
       new DeploymentOptions().setInstances(2),
       httpVerticleDeployment.completer());
 
