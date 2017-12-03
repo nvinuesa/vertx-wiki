@@ -2,23 +2,15 @@ package io.vertx.starter.database;
 
 import io.vertx.core.AbstractVerticle;
 import io.vertx.core.Future;
-import io.vertx.core.eventbus.Message;
-import io.vertx.core.json.JsonArray;
 import io.vertx.core.json.JsonObject;
-import io.vertx.core.logging.Logger;
-import io.vertx.core.logging.LoggerFactory;
 import io.vertx.ext.jdbc.JDBCClient;
-import io.vertx.ext.sql.ResultSet;
-import io.vertx.ext.sql.SQLConnection;
 import io.vertx.serviceproxy.ProxyHelper;
 
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Properties;
-import java.util.stream.Collectors;
 
 public class WikiDatabaseVerticle extends AbstractVerticle {
 
@@ -72,6 +64,7 @@ public class WikiDatabaseVerticle extends AbstractVerticle {
     sqlQueries.put(SqlQuery.CREATE_PAGE, queriesProps.getProperty("create-page"));
     sqlQueries.put(SqlQuery.SAVE_PAGE, queriesProps.getProperty("save-page"));
     sqlQueries.put(SqlQuery.DELETE_PAGE, queriesProps.getProperty("delete-page"));
+    sqlQueries.put(SqlQuery.ALL_PAGES_DATA, queriesProps.getProperty("all-pages-data"));
     return sqlQueries;
   }
 }
