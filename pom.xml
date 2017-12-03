@@ -12,6 +12,7 @@
   <properties>
     <vertx.version>3.5.0</vertx.version>
     <main.verticle>io.vertx.starter.MainVerticle</main.verticle>
+    <vertx.verticle>io.vertx.starter.MainVerticle</vertx.verticle>
   </properties>
 
   <dependencyManagement>
@@ -122,6 +123,24 @@
     </pluginManagement>
 
     <plugins>
+      <plugin>
+        <groupId>io.fabric8</groupId>
+        <artifactId>vertx-maven-plugin</artifactId>
+        <version>1.0.13</version>
+        <executions>
+          <execution>
+            <id>vmp</id>
+            <goals>
+              <goal>initialize</goal>
+              <goal>package</goal>
+            </goals>
+          </execution>
+        </executions>
+        <configuration>
+          <redeploy>true</redeploy>
+        </configuration>
+      </plugin>
+
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-shade-plugin</artifactId>

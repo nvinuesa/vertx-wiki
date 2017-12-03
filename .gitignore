@@ -1,5 +1,7 @@
 # .gitignore
 generated/
+db/
+.vertx/
 
 # Java
 *.class
