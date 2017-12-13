@@ -32,10 +32,17 @@ public class ApiTest {
       .put(WikiDatabaseVerticle.CONFIG_WIKIDB_JDBC_URL, "jdbc:hsqldb:mem:testdb;shutdown=true")
       .put(WikiDatabaseVerticle.CONFIG_WIKIDB_JDBC_MAX_POOL_SIZE, 4);
 
-    vertx.deployVerticle(new WikiDatabaseVerticle(),
-      new DeploymentOptions().setConfig(dbConf), context.asyncAssertSuccess());
+    Future future = Future.future();
+    future.setHandler(context.asyncAssertSuccess());
 
-    vertx.deployVerticle(new HttpServerVerticle(), context.asyncAssertSuccess());
+    Future vertDeploy1 = Future.future();
+
+    vertx.deployVerticle(new WikiDatabaseVerticle(),
+      new DeploymentOptions().setConfig(dbConf), vertDeploy1);
+
+    vertDeploy1.compose(v -> {
+      vertx.deployVerticle(new HttpServerVerticle(), future.completer());
+    }, future);
 
     webClient = WebClient.create(vertx, new WebClientOptions()
       .setDefaultHost("localhost")
